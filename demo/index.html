@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+  <head>
+    <title>super-splitter demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+
+    <link rel="import" href="../super-splitter.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles"> </style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment"> </style>
+    <style>
+
+      .container {
+        height: 240px;
+        border: 4px solid #aaa;
+      }
+
+      #box1, #box3, #box5, #box6 {
+        width: 100px;
+      }
+
+      #box2, #box4 {
+        height: 40px;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic super-splitter Demo</h3>
+      <demo-snippet>
+        <template>
+          <div class="container horizontal layout">
+
+            <div>left (min: 128px)</div>
+            <super-splitter direction="left" min-size="128px"></super-splitter>
+            <div flex>right</div>
+
+          </div>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic super-splitter Demo</h3>
+      <demo-snippet>
+        <template>
+          <div class="container vertical layout">
+
+            <div id="box2">top</div>
+            <super-splitter direction="up"></super-splitter>
+            <div flex>bottom</div>
+
+          </div>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic super-splitter Demo</h3>
+      <demo-snippet>
+        <template>
+          <div class="container horizontal layout">
+
+            <div id="box3">1</div>
+            <super-splitter direction="left"></super-splitter>
+            <div class="flex vertical layout">
+
+              <div id="box4">2</div>
+              <super-splitter direction="up"></super-splitter>
+              <div class="flex">3</div>
+
+            </div>
+
+          </div>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic super-splitter Demo</h3>
+      <demo-snippet>
+        <template>
+          <div class="container horizontal layout">
+
+            <div id="box5">left</div>
+            <super-splitter direction="left"></super-splitter>
+
+            <div class="flex">center</div>
+
+            <super-splitter direction="right"></super-splitter>
+            <div id="box6">right</div>
+
+          </div>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

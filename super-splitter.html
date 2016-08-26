@@ -1,0 +1,133 @@
+<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html" />
+
+<!--
+`super-splitter`
+
+
+@demo demo/index.html
+-->
+
+<dom-module id="super-splitter">
+  <template>
+    <style>
+      :host {
+        display: block;
+        width: 12px;
+        background: #efefef url(handle.svg) no-repeat center;
+        box-shadow: inset 0 0 2px 1px #ccc;
+        cursor: col-resize;
+      }
+
+      :host(.horizontal) {
+        width: auto;
+        height: 12px;
+        cursor: row-resize;
+        background-image: url(handle-h.svg);
+      }
+
+      :host(:hover, :active) {
+        background-color: #ddd;
+      }
+
+    </style>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'super-splitter',
+      behaviors: [
+        Polymer.IronResizableBehavior
+      ],
+
+      properties: {
+        direction: {
+          type: String,
+          value: 'left',
+        },
+        minSize: {
+          type: String,
+          value: ''
+        },
+        locked: {
+          type: Boolean,
+          value: false
+        },
+        allowOverflow: {
+          type: Boolean,
+          value: false
+        },
+        resizerIsPeer: {
+          type: Boolean,
+          value: true
+        }
+      },
+
+      listeners: {
+        'track': 'handleTrack',
+      },
+
+      ready: function () {
+        if (!this.allowOverflow) {
+          this.parentNode.style.overflow = this.nextElementSibling.style.overflow =
+              this.previousElementSibling.style.overflow = 'hidden';
+        }
+
+        this.directionChanged();
+        this.behaviors.map(b => b.ready ? b.ready.call(this) : null)
+      },
+
+      directionChanged: function() {
+        this.isNext = this.direction === 'right' || this.direction === 'down';
+        this.horizontal = this.direction === 'up' || this.direction === 'down';
+        this.update();
+      },
+
+      update: function() {
+        this.target = this.isNext ? this.nextElementSibling : this.previousElementSibling;
+        this.dimension = this.horizontal ? 'height' : 'width';
+        this.classList.toggle('horizontal', this.horizontal);
+      },
+
+      attached: function () {
+        this.behaviors.map(b => b.attached ? b.attached.call(this) : null)
+      },
+
+      created: function () {
+        this.behaviors.map(b => b.created ? b.created.call(this) : null)
+      },
+
+      detached: function () {
+        this.behaviors.map(b => b.detached ? b.detached.call(this) : null)
+      },
+
+      handleTrack: function (e) {
+        switch (e.detail.state){
+          case 'start': {
+            this.update();
+            this.size = parseInt(getComputedStyle(this.target)[this.dimension]);
+          }
+
+          case 'track': {
+            if (this.locked) {
+              return;
+            }
+            var d = e.detail[this.horizontal ? 'dy' : 'dx'];
+            this.target.style[this.dimension] =
+                this.size + (this.isNext ? -d : d) + 'px';
+            this.notifyResize();
+            debugger;
+
+          }
+
+          case 'end': {
+
+          }
+        }
+
+      }
+
+    });
+  </script>
+</dom-module>
