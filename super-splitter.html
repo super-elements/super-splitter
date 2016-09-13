@@ -66,6 +66,7 @@
 
       listeners: {
         'track': 'handleTrack',
+        'down': 'preventSelection'
       },
 
       ready: function () {
@@ -117,15 +118,21 @@
             this.target.style[this.dimension] =
                 this.size + (this.isNext ? -d : d) + 'px';
             this.notifyResize();
-            debugger;
-
           }
 
           case 'end': {
 
           }
         }
-
+      },
+      
+      /**
+       * Prevents selection of text on nearby elements.
+       * @param  {Object} e The event Object.
+       * @return {null}   null
+       */
+      preventSelection: function(e) {
+        e.preventDefault();
       }
 
     });
