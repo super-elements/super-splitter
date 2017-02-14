@@ -1,0 +1,26 @@
+{
+  "name": "super-splitter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/super-elements/super-splitter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/super-elements/super-splitter/issues"
+  },
+  "homepage": "https://github.com/super-elements/super-splitter#readme",
+  "devDependencies": {
+    "eslint": "^3.15.0",
+    "eslint-plugin-html": "^2.0.0"
+  }
+}
