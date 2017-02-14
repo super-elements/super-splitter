@@ -2,8 +2,7 @@
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html" />
 
 <!--
-`super-splitter`
-
+`super-splitter` used to split the pages into two parts.
 
 @demo demo/index.html
 -->
@@ -42,14 +41,23 @@
       ],
 
       properties: {
+        /**
+        * The direction show the position of splitter.
+        */
         direction: {
           type: String,
           value: 'left',
         },
+        /**
+        * The minSize of div
+        */
         minSize: {
           type: String,
           value: ''
         },
+        /**
+        * The locked used for disabled the splitter movement.
+        */
         locked: {
           type: Boolean,
           value: false
@@ -58,6 +66,9 @@
           type: Boolean,
           value: false
         },
+        /**
+        *
+        */
         resizerIsPeer: {
           type: Boolean,
           value: true
@@ -125,7 +136,7 @@
           }
         }
       },
-      
+
       /**
        * Prevents selection of text on nearby elements.
        * @param  {Object} e The event Object.
