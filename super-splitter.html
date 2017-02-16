@@ -1,11 +1,37 @@
-<link rel="import" href="../polymer/polymer.html" />
-<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html" />
 
 <!--
-`super-splitter` used to split the pages into two parts.
+`super-splitter` provides a split bar and dragging on the split bar
+will resize the sibling element.  Use its `direction` property to indicate
+which sibling element to be resized and the orientation.  Usually you would want
+to use `super-splitter` along with flex layout so that the other sibling
+element can be _flexible_.
+
+Example:
+    <div horizontal layout>
+      <div>left</div>
+      <core-splitter direction="left"></core-splitter>
+      <div flex>right</div>
+    </div>
+
+In the above example, dragging the splitter will resize the _left_ element.  And
+since the parent container is a flexbox and the _right_ element has
+`flex`, the _right_ element will be auto-resized.
+For horizontal splitter set `direction` to `up` or `down`.
+
+Example:
+    <div vertical layout>
+      <div>top</div>
+      <core-splitter direction="up"></core-splitter>
+      <div flex>bottom</div>
+    </div>
+
 @demo demo/index.html
+@hero hero.svg
 -->
 
+
+<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html" />
 <dom-module id="super-splitter">
   <template>
     <style>
@@ -41,33 +67,45 @@
 
       properties: {
         /**
-        * The direction show the position of splitter.
+        * Possible values are `left`, `right`, `up` and `down`.
+        *
+        * @attribute direction
+        * @type string
+        * @default 'left'
         */
         direction: {
           type: String,
           value: 'left',
         },
         /**
-        * The minSize of div
+        * * Minimum width to which the splitter target can be sized, e.g.
+        * `minSize="100px"`
         */
         minSize: {
           type: String,
           value: ''
         },
         /**
-        * The locked used for disabled the splitter movement.
+        * Lock the split bar so it can't be dragged.
         */
         locked: {
           type: Boolean,
           value: false
         },
+      /**
+      * By default the parent and siblings of the splitter are set to overflow hidden. This helps
+      * avoid elements bleeding outside the splitter regions. Set this property to true to allow
+      * these elements to overflow.
+      *
+      * @attribute allowOverflow
+      * @type boolean
+      * @default false
+      */
         allowOverflow: {
           type: Boolean,
           value: false
         },
-        /**
-        *
-        */
+        // Listen for resize requests on parent, since splitter is peer to resizables
         resizerIsPeer: {
           type: Boolean,
           value: true
