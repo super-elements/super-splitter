@@ -1,6 +1,8 @@
 {
   "name": "super-splitter",
+  "version": "v0.0.1",
   "main": "super-splitter.html",
+  "license": "Apache-2.0",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0"
   },
