@@ -1,0 +1,63 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>super-splitter test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../super-splitter.html">
+  </head>
+  <body>
+    <test-fixture id="super-splitter-fixture">
+      <template>
+        <div>
+  <div> </div>
+    <super-splitter>
+            <h2>super-splitter</h2>
+    </super-splitter>
+  <div> </div>
+</div>
+      </template>
+    </test-fixture>
+    <script>
+
+    suite('<super-splitter>', function() {
+
+  var myEl;
+
+  setup(function() {
+    myEl = fixture('super-splitter-fixture');
+  });
+
+test('default property allowOverflow', function(){
+  myEl.setAttribute('allowOverflow','false');
+  expect(false).to.equal(myEl.allowOverflow);
+  });
+
+  test('default property locked', function(){
+    myEl.setAttribute('locked','false');
+    expect(false).to.equal(myEl.locked);
+    });
+
+    test('default property resizerIsPeer', function(){
+      myEl.setAttribute('resizerIsPeer','false');
+      expect(false).to.equal(myEl.resizerIsPeer);
+      });
+
+      test('default property minSize', function(){
+        myEl.setAttribute('minSize','');
+        expect('').to.equal(myEl.minSize);
+        });
+
+        test('default property direction', function(){
+          myEl.setAttribute('allow-overflow','left');
+          expect(left).to.equal(myEl.direction);
+          });
+});
+
+  </script>
+  </body>
+</html>
