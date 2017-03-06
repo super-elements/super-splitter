@@ -14,47 +14,51 @@
     <test-fixture id="super-splitter-fixture">
       <template>
         <div>
-  <div> </div>
-    <super-splitter>
-            <h2>super-splitter</h2>
-    </super-splitter>
-  <div> </div>
-</div>
+          <div> </div>
+          <super-splitter>
+              <h2>super-splitter</h2>
+          </super-splitter>
+          <div> </div>
+        </div>
       </template>
     </test-fixture>
-    <script>
+  <script>
 
     suite('<super-splitter>', function() {
 
   var myEl;
-
+  var child;
   setup(function() {
     myEl = fixture('super-splitter-fixture');
+
   });
 
 test('default property allowOverflow', function(){
-  myEl.setAttribute('allowOverflow','false');
-  expect(false).to.equal(myEl.allowOverflow);
+  childEl = myEl.childNodes[3];
+  childEl.allowOverflow = true;
+  console.log('baisc element',childEl.allowOverflow);
+  expect(true).to.equal(childEl.allowOverflow);
   });
 
   test('default property locked', function(){
-    myEl.setAttribute('locked','false');
-    expect(false).to.equal(myEl.locked);
+  childEl.setAttribute('locked',true);
+    expect(true).to.equal(childEl.locked);
     });
 
     test('default property resizerIsPeer', function(){
-      myEl.setAttribute('resizerIsPeer','false');
-      expect(false).to.equal(myEl.resizerIsPeer);
+      childEl.setAttribute('resizerIsPeer',true);
+      expect(true).to.equal(childEl.resizerIsPeer);
       });
 
-      test('default property minSize', function(){
-        myEl.setAttribute('minSize','');
-        expect('').to.equal(myEl.minSize);
-        });
+          test('default property minSize', function(){
+            childEl.minSize=128;
+            console.log('baisc element',childEl.minSize);
+            expect(128).to.equal(childEl.minSize);
+            });
 
         test('default property direction', function(){
-          myEl.setAttribute('allow-overflow','left');
-          expect(left).to.equal(myEl.direction);
+          childEl.setAttribute('direction','left');
+          expect('left').to.equal(childEl.direction);
           });
 });
 
