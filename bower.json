@@ -1,6 +1,6 @@
 {
   "name": "super-splitter",
-  "version": "v0.0.1",
+  "version": "1.0.0",
   "main": "super-splitter.html",
   "license": "Apache-2.0",
   "dependencies": {
